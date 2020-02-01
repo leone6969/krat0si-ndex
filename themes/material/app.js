@@ -52,7 +52,7 @@ function init(){
     $('body').html(html);
 }
 
-//added by himanshurahi
+//added by Tush
 var inst;
 var isShare;
 function toggle(){
