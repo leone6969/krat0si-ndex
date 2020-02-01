@@ -39,7 +39,7 @@ function init(){
 <div id="content" class="mdui-container"></div>
 <div class="mdui-container">
 <div class="mdui-dialog" id="ContactModal">
-    <div class="mdui-dialog-content">Created By Himanshu Rahi | <a style = 'color: inherit;' href = 'https://fb.com/himanshurahi.31'>Facebook</a></div>
+    <div class="mdui-dialog-content">Created By Tushar Bansal | <a style = 'color: inherit;' href = 'https://fb.com/420tushar'>Facebook</a></div>
     <div class="mdui-dialog-actions">
       <button class="mdui-btn mdui-ripple" mdui-dialog-close>Close</button>
     </div>
@@ -52,55 +52,6 @@ function init(){
     $('body').html(html);
 }
 
-//added by himanshurahi
-var inst;
-var isShare;
-function toggle(){
-inst = new mdui.Drawer('#drawer')
-inst.toggle();
-}
-function ToggleClass(){
-	
-	
-	 $('body').toggleClass('mdui-theme-primary-indigo mdui-theme-layout-dark')
-	 $('body').toggleClass('mdui-theme-primary-teal').addClass('mdui-theme-primary-indigo')
-	 $('body').toggleClass('mdui-theme-accent-teal').addClass('mdui-theme-accent-indigo')
-	 inst.toggle();
-	
-}
-
-function ToggleModal(){
-	var inst1 = new mdui.Dialog('#ContactModal');
-	inst1.toggle();
-	inst.toggle();
-}
-
-async function ShareLink(){
-	var f = decodeURIComponent(window.location.pathname).split('/')
-	var folderName = f[f.length - 2]
-	var host = window.location.href 
-	
-	 try {
-			
-            await navigator.share({ text : '*'+folderName+'*\n' , url : host });
-            console.log("Data was shared successfully");
-          } catch (err) {
-			  alert('Unsupported feature')
-			  console.error("Share failed:", err.message);
-          }
-}
-var fileName;
-
-async function ShareLinkVideo(){
-	 try {
-			
-            await navigator.share({ text : '*'+decodeURIComponent(fileName)+'*\n' , url : window.location });
-            console.log("Data was shared successfully");
-          } catch (err) {
-			  alert('Unsupported feature')
-			  console.error("Share failed:", err.message);
-          }
-}
 
 //endofmyfunctions
 
