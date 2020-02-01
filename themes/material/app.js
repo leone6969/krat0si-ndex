@@ -110,16 +110,11 @@ function list(path){
 	 <ul id="list" class="mdui-list"> 
 	  </ul> 
 	 </div>
-	 <button class="mdui-fab  mdui-ripple" onClick = 'ShareLink()' style = "margin-bottom : 20px"><i class="mdui-icon material-icons">share</i></button>
-	 <div id="readme_md" class="mdui-typo" style="display:none; padding: 20px 0;"></div>
-	`;
-	}
-	else{
-		var content = `
-	<div id="head_md" class="mdui-typo" style="display:none;padding: 20px 0;"></div>
+	 <div id="head_md" class="mdui-typo" style="display:none;padding: 20px 0;"></div>
 	<div class="mdui-textfield">
   <input class="mdui-textfield-input" id = "myInput" onkeyup="myFunction()" type="text" placeholder="Search Here"/>
 </div>
+	
 	  
 	 <div class="mdui-row"> 
 	  <ul id="list" class="mdui-list"> 
@@ -137,7 +132,7 @@ function list(path){
     $.post(path,'{"password":"'+password+'"}', function(data,status){
         var obj = jQuery.parseJSON(data);
         if(typeof obj != 'null' && obj.hasOwnProperty('error') && obj.error.code == '401'){
-            var pass = prompt("目录加密，请输入密码","");
+            var pass = prompt("Decrypt Psswd","");
             localStorage.setItem('password'+path, pass);
             if(pass != null && pass != ""){
                 list(path);
@@ -313,10 +308,6 @@ function file_video(path){
 	<div class="mdui-textfield">
 	  <label class="mdui-textfield-label">Download Link</label>
 	  <input class="mdui-textfield-input" type="text" value="${url}"/>
-	</div>
-	<div class="mdui-textfield">
-	  <label class="mdui-textfield-label">引用地址</label>
-	  <textarea class="mdui-textfield-input"><video><source src="${url}" type="video/mp4"></video></textarea>
 	</div>
 </div>
  <button class="mdui-fab  mdui-ripple" onClick = 'ShareLinkVideo()' style = "margin-bottom : 20px"><i class="mdui-icon material-icons">share</i></button>
