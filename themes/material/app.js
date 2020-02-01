@@ -52,6 +52,55 @@ function init(){
     $('body').html(html);
 }
 
+//added by himanshurahi
+var inst;
+var isShare;
+function toggle(){
+inst = new mdui.Drawer('#drawer')
+inst.toggle();
+}
+function ToggleClass(){
+	
+	
+	 $('body').toggleClass('mdui-theme-primary-indigo mdui-theme-layout-dark')
+	 $('body').toggleClass('mdui-theme-primary-teal').addClass('mdui-theme-primary-indigo')
+	 $('body').toggleClass('mdui-theme-accent-teal').addClass('mdui-theme-accent-indigo')
+	 inst.toggle();
+	
+}
+
+function ToggleModal(){
+	var inst1 = new mdui.Dialog('#ContactModal');
+	inst1.toggle();
+	inst.toggle();
+}
+
+async function ShareLink(){
+	var f = decodeURIComponent(window.location.pathname).split('/')
+	var folderName = f[f.length - 2]
+	var host = window.location.href 
+	
+	 try {
+			
+            await navigator.share({ text : '*'+folderName+'*\n' , url : host });
+            console.log("Data was shared successfully");
+          } catch (err) {
+			  alert('Unsupported feature')
+			  console.error("Share failed:", err.message);
+          }
+}
+var fileName;
+
+async function ShareLinkVideo(){
+	 try {
+			
+            await navigator.share({ text : '*'+decodeURIComponent(fileName)+'*\n' , url : window.location });
+            console.log("Data was shared successfully");
+          } catch (err) {
+			  alert('Unsupported feature')
+			  console.error("Share failed:", err.message);
+          }
+}
 
 //endofmyfunctions
 
