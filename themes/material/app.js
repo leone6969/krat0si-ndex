@@ -52,6 +52,57 @@ function init(){
     $('body').html(html);
 }
 
+//added by himanshurahi
+var inst;
+var isShare;
+function toggle(){
+inst = new mdui.Drawer('#drawer')
+inst.toggle();
+}
+function ToggleClass(){
+	
+	
+	 $('body').toggleClass('mdui-theme-primary-indigo mdui-theme-layout-dark')
+	 $('body').toggleClass('mdui-theme-primary-teal').addClass('mdui-theme-primary-indigo')
+	 $('body').toggleClass('mdui-theme-accent-teal').addClass('mdui-theme-accent-indigo')
+	 inst.toggle();
+	
+}
+
+function ToggleModal(){
+	var inst1 = new mdui.Dialog('#ContactModal');
+	inst1.toggle();
+	inst.toggle();
+}
+
+async function ShareLink(){
+	var f = decodeURIComponent(window.location.pathname).split('/')
+	var folderName = f[f.length - 2]
+	var host = window.location.href 
+	
+	 try {
+			
+            await navigator.share({ text : '*'+folderName+'*\n' , url : host });
+            console.log("Data was shared successfully");
+          } catch (err) {
+			  alert('Unsupported feature')
+			  console.error("Share failed:", err.message);
+          }
+}
+var fileName;
+
+async function ShareLinkVideo(){
+	 try {
+			
+            await navigator.share({ text : '*'+decodeURIComponent(fileName)+'*\n' , url : window.location });
+            console.log("Data was shared successfully");
+          } catch (err) {
+			  alert('Unsupported feature')
+			  console.error("Share failed:", err.message);
+          }
+}
+
+
 
 //endofmyfunctions
 
@@ -137,7 +188,7 @@ function list(path){
     $.post(path,'{"password":"'+password+'"}', function(data,status){
         var obj = jQuery.parseJSON(data);
         if(typeof obj != 'null' && obj.hasOwnProperty('error') && obj.error.code == '401'){
-            var pass = prompt("目录加密，请输入密码","");
+            var pass = prompt("Decryption Psswd","");
             localStorage.setItem('password'+path, pass);
             if(pass != null && pass != ""){
                 list(path);
@@ -314,10 +365,7 @@ function file_video(path){
 	  <label class="mdui-textfield-label">Download Link</label>
 	  <input class="mdui-textfield-input" type="text" value="${url}"/>
 	</div>
-	<div class="mdui-textfield">
-	  <label class="mdui-textfield-label">引用地址</label>
-	  <textarea class="mdui-textfield-input"><video><source src="${url}" type="video/mp4"></video></textarea>
-	</div>
+	
 </div>
  <button class="mdui-fab  mdui-ripple" onClick = 'ShareLinkVideo()' style = "margin-bottom : 20px"><i class="mdui-icon material-icons">share</i></button>
 <a href="${url}" class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">file_download</i></a>
